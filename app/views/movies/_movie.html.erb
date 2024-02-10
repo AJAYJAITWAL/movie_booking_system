@@ -1,5 +1,5 @@
 <div class="card my-3" style="width: 18rem;">
-  <img src="https://yourfilmposter.com/cdn/shop/files/theboss_1008x.jpg?v=1693234186" class="card-img-top" alt="image">
+  <%= image_tag url_for(movie.image), class: 'thumbnail' %>
   <div class="card-body">
     <p class="card-text"><strong><%= movie.title %></strong></p>
     <p class="card-text"><%= movie.genre %></p>
