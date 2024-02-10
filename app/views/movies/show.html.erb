@@ -1,5 +1,7 @@
 <%= render @movie %>
 
+<%= link_to "Book tickets", shows_path(movie_id: @movie), class: "btn btn-success mb-4" %>
+
 <div>
   <%= link_to "Edit this movie", edit_movie_path(@movie), class: "btn btn-warning" %> |
   <%= link_to "Back to movies", movies_path, class: "btn btn-primary" %>

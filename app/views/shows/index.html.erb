@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Shows</h1>
+
+<%= link_to "New show", new_show_path, class: "btn btn-primary mb-4" %>
+
+<%= link_to "Go to Movie", movies_path, class: "btn btn-success mb-4" %>
+
+<div id="shows">
+  <% @shows.each do |show| %>
+    <%= render show %>
+  <% end %>
+</div>
+

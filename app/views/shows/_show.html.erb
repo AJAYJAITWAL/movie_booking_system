@@ -1,0 +1,9 @@
+<div class="card w-75 my-3">
+  <div class="card-body">
+    <h5 class="card-title"><%= show.movie.title %></h5>
+    <p class="card-text">Start time:- <%= show.start_time %></p>
+    <p class="card-text">Start time:-<%= show.end_time %></p>
+    <p class="card-text">Available seats:- <%= show.available_seats %></p>
+    <%= link_to "View Show", show, class: "btn btn-primary" %>
+  </div>
+</div>
