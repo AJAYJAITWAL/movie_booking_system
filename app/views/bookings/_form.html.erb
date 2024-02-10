@@ -11,15 +11,7 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div>
-    <%= form.label :show_id, style: "display: block" %>
-    <%= form.text_field :show_id %>
-  </div>
+  <%= form.hidden_field :show_id, value: @show.id %>
 
   <div>
     <%= form.label :seat_number, style: "display: block" %>

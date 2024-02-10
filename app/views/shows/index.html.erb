@@ -7,8 +7,11 @@
 <%= link_to "Go to Movie", movies_path, class: "btn btn-success mb-4" %>
 
 <div id="shows">
-  <% @shows.each do |show| %>
-    <%= render show %>
+  <% if @shows.present? %>
+    <% @shows.each do |show| %>
+      <%= render show %>
+    <% end %>
+  <% else %>
+    <h3>No Show Found!</h3>
   <% end %>
 </div>
-
