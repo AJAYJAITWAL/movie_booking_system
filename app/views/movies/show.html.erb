@@ -1,0 +1,8 @@
+<%= render @movie %>
+
+<div>
+  <%= link_to "Edit this movie", edit_movie_path(@movie), class: "btn btn-warning" %> |
+  <%= link_to "Back to movies", movies_path, class: "btn btn-primary" %>
+
+  <%= button_to "Destroy this movie", @movie, method: :delete, class: "btn btn-danger my-3" %>
+</div>
