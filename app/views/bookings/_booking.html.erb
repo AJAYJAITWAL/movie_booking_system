@@ -1,7 +1,14 @@
-<div id="<%= dom_id booking %>">
-  <p>
-    <strong>Seat number:</strong>
-    <%= booking.seat_number %>
-  </p>
-
+<div class="card my-3" style="width: 72rem;">
+  <div class="row">
+    <div class="col-3">
+      <%= image_tag url_for(booking.show.movie.image), class: 'thumbnail w-100' %>
+    </div>
+    <div class="col-9">
+      <div class="card-body">
+        <p class="card-text"><strong><%= booking.show.movie.title %></strong></p>
+        <p class="card-text">Your seat number is:- <%= booking.seat_numbers.join(", ") %></p>
+        <%= button_to "Cancel booking", booking, method: :delete, class: "btn btn-danger" %>
+      </div>
+    </div>
+  </div>
 </div>

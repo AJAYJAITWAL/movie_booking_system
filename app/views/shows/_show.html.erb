@@ -1,10 +1,23 @@
-<div class="card w-75 my-3">
+<div class="card my-3" style="width: 70rem;">
   <div class="card-body">
-    <h5 class="card-title"><%= show.movie.title %></h5>
-    <p class="card-text">Start time:- <%= show.start_time %></p>
-    <p class="card-text">Start time:-<%= show.end_time %></p>
-    <p class="card-text">Available seats:- <%= show.available_seats %></p>
-    <%= link_to "View Show", show, class: "btn btn-primary" %>
-    <%= link_to "Book ticket", new_booking_path(show_id: show), class: "btn btn-primary" %>
+    <div class="row">
+      <div class="col-4">
+        <%= image_tag url_for(show.movie.image), class: 'thumbnail w-100' %>
+      </div>
+      <div class="col-8">
+        <h5 class="card-title"><%= show.movie.title %></h5>
+        <p class="card-text">Start time:- <%= show.start_time.strftime("%Y-%m-%d %I:%M:%S %p") %></p>
+        <p class="card-text">End time:-<%= show.end_time.strftime("%Y-%m-%d %I:%M:%S %p") %></p>
+        <p class="card-text">Available seats:- <%= show.available_seats %></p>
+        <div class="my-3">
+          <%= link_to "Book ticket", new_booking_path(show_id: show), class: "btn btn-primary" %>
+        </div>
+
+        <div class="d-flex">
+          <%= link_to "Edit", edit_show_path(show), class: "btn btn-primary me-2" %>
+          <%= button_to "Delete", @show, method: :delete, class: "btn btn-danger" %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

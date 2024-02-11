@@ -1,0 +1,15 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>My Bookings</h1>
+
+<div id="bookings">
+  <% if @my_bookings.present? %>
+    <% @my_bookings.each do |booking| %>
+      <%= render booking %>
+    <% end %>
+  <% else %>
+    <h3>No Booking Found!</h3>
+  <% end %>  
+</div>
+
+<%= link_to "Go to Movies", movies_path, class: "btn btn-primary" %>

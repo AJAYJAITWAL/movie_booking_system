@@ -1,10 +1,27 @@
-<%= render @movie %>
+<div class="container">
+  <div class="row my-3 pt-4">
+    <div class="col-7">
+      <%= image_tag url_for(@movie.image), class: 'thumbnail w-100' %>
+    </div>
+    <div class="col-5">
+      <div class="card-body">
+        <h3 class="card-text"><%= @movie.title %></h3>
+        <h6 class="card-text"><%= @movie.genre %></h6>
+        <p class="card-text"><%= @movie.description %></p>
+      </div>
+    </div>
+  </div>
 
-<%= link_to "View Movie Shows", shows_path(movie_id: @movie), class: "btn btn-success mb-4" %>
+  <div class="text-center">
+    <%= link_to "View Movie Shows", shows_path(movie_id: @movie), class: "btn btn-lg btn-success mb-4" %>
+  </div>
 
-<div>
-  <%= link_to "Edit this movie", edit_movie_path(@movie), class: "btn btn-warning" %> |
-  <%= link_to "Back to movies", movies_path, class: "btn btn-primary" %>
+  <div>
+    <%= link_to "Back to movies", movies_path, class: "btn btn-primary" %>
+  </div>
 
-  <%= button_to "Destroy this movie", @movie, method: :delete, class: "btn btn-danger my-3" %>
+  <div class="d-flex mt-5">
+    <div><%= link_to "Edit this movie", edit_movie_path(@movie), class: "btn btn-warning me-2" %></div>
+    <div><%= button_to "Destroy this movie", @movie, method: :delete, class: "btn btn-danger" %></div>
+  </div>
 </div>

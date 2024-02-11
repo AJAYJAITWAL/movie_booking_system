@@ -7,6 +7,8 @@ class User < ApplicationRecord
   enum role: %i(user admin)
   after_initialize :set_default_role, if: :new_record?
 
+  has_many :bookings, dependent: :destroy
+
   private
 
   def set_default_role

@@ -5,14 +5,14 @@ class ShowsController < ApplicationController
     @shows = params[:movie_id].present? ? Show.where(movie_id: params[:movie_id]) : Show.all 
   end
 
-  def show; end
-
   def new
     @show = Show.new
     @movies = Movie.all
   end
 
-  def edit; end
+  def edit
+    @movies = Movie.all
+  end
 
   def create
     @show = Show.new(show_params)

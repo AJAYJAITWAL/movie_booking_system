@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :bookings
+  resources :bookings do
+    get :my_bookings, on: :collection
+  end
   resources :shows
   resources :movies
   devise_for :users

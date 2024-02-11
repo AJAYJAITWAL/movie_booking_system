@@ -13,12 +13,24 @@
 
   <%= form.hidden_field :show_id, value: @show.id %>
 
-  <div>
-    <%= form.label :seat_number, style: "display: block" %>
-    <%= form.number_field :seat_number %>
+  <div class="field mb-5">
+    <%= form.label :show_date %>
+    <%= form.select :show_date, options_for_select((Date.today..Date.today + 6.days).map { |date| [date.strftime("%B %d, %Y"), date] }), {}, class: "form-control" %>
+  </div>
+
+  <div class="row">
+    <% @show.total_seats.times do |seat_number| %>
+      <div class="col">
+        <% if @booked_seat.present? and @booked_seat.include?(seat_number.to_s) %>
+          <%= check_box_tag 'booking[seat_numbers][]',seat_number, true, disabled: true, class: "checkbox-seat" %>
+        <% else %>
+          <%= check_box_tag 'booking[seat_numbers][]',seat_number, nil, disabled: false, class: "checkbox-seat" %>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit class: "btn btn-success mt-4 create-booking-btn", disabled: true %>
   </div>
 <% end %>

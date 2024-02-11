@@ -24,6 +24,11 @@
   </div>
 
   <div>
+    <%= form.label :description, style: "display: block", class: "form-label mt-2" %>
+    <%= form.text_area :description, class: "form-control" %>
+  </div>
+
+  <div>
     <%= form.submit class: "btn btn-success mt-4" %>
   </div>
 <% end %>

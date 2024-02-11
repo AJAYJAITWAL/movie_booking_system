@@ -10,6 +10,7 @@ class BookingsController < ApplicationController
   def new
     @booking = Booking.new
     @show = Show.find(params[:show_id])
+    @booked_seat = Booking.all.where(show_id: @show.id)&.map(&:seat_numbers).reduce(:+)
   end
 
   def edit; end
@@ -19,11 +20,9 @@ class BookingsController < ApplicationController
 
     respond_to do |format|
       if @booking.save
-        format.html { redirect_to booking_url(@booking), notice: "Booking was successfully created." }
-        format.json { render :show, status: :created, location: @booking }
+        format.html { redirect_to my_bookings_bookings_path, notice: "Booking was successfully created." }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @booking.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -44,9 +43,13 @@ class BookingsController < ApplicationController
     @booking.destroy!
 
     respond_to do |format|
-      format.html { redirect_to bookings_url, notice: "Booking was successfully destroyed." }
+      format.html { redirect_to movies_url, notice: "Booking was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def my_bookings
+    @my_bookings = current_user.bookings
   end
 
   private
@@ -55,6 +58,6 @@ class BookingsController < ApplicationController
     end
 
     def booking_params
-      params.require(:booking).permit(:user_id, :show_id, :seat_number)
+      params.require(:booking).permit(:user_id, :show_id, :show_date, seat_numbers: [])
     end
 end
