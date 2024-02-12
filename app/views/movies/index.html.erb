@@ -5,11 +5,15 @@
 <% end %>
 
 <div id="movies", class="row d-flex">
-  <% @movies.each do |movie| %>
-    <div class="col-3 mt-4">
-      <%= link_to movie_path(movie), class: "card-link text-decoration-none" do %>
-        <%= render movie %>
-      <% end %>
-    </div>
+  <% if @movies.present? %>
+    <% @movies.each do |movie| %>
+      <div class="col-3 mt-4">
+        <%= link_to movie_path(movie), class: "card-link text-decoration-none" do %>
+          <%= render movie %>
+        <% end %>
+      </div>
+    <% end %>
+  <% else %>
+    <h3 class="text-center">No Movie Found!</h3>
   <% end %>
 </div>

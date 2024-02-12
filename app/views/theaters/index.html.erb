@@ -5,11 +5,15 @@
 <%= link_to "New theater", new_theater_path, class: "btn btn-primary my-3" %>
 
 <div id="theaters">
-  <% @theaters.each do |theater| %>
-    <%= render theater %>
-    <p>
-      <%= link_to "Show", theater, class: "btn btn-success" %>
-    </p>
-    <hr/>
+  <% if @theaters.present? %>
+    <% @theaters.each do |theater| %>
+      <%= render theater %>
+      <p>
+        <%= link_to "Show", theater, class: "btn btn-success" %>
+      </p>
+      <hr/>
+    <% end %>
+  <% else %>
+    <h3 class="text-center">No Theater Found!</h3>
   <% end %>
 </div>
