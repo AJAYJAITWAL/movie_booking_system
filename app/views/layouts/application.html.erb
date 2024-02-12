@@ -15,14 +15,14 @@
       <div class="container-fluid">
         <a class="navbar-brand", href="/">𝑀𝑜𝓋𝒾𝑒𝐵𝑜𝑜𝓀𝒾𝓃𝑔</a>
         <p class="navbar-text float-right">
-          <%= link_to "Movies", movies_path, class: "btn btn-success" %>
+          <%= link_to "Movies", movies_path, class: "btn btn-success text-white" %>
           <% if can? :manage, Theater %>
-            <%= link_to "Add Theaters", theaters_path, class: "btn btn-secondary" %>
+            <%= link_to "Add Theaters", theaters_path, class: "btn btn-secondary text-white" %>
           <% end %>
           <% if can? :manage, Show %>
-            <%= link_to "Shows", shows_path, class: "btn btn-info" %>
+            <%= link_to "Shows", shows_path, class: "btn btn-info text-white" %>
           <% end %>
-          <%= link_to "My Bookings", my_bookings_bookings_path, class: "btn btn-warning" %>
+          <%= link_to "My Bookings", my_bookings_bookings_path, class: "btn btn-warning text-white" %>
 
           <% if user_signed_in? %>
             Logged in as <strong><%= current_user.email %></strong>.
