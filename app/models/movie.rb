@@ -4,6 +4,5 @@ class Movie < ApplicationRecord
   has_many :theaters, through: :shows
 
   validates :title, presence: true, uniqueness: true
-  validates :genre, presence: true
-  validates :description, presence: true
+  validates :genre, :description, presence: true
 end

@@ -5,15 +5,13 @@ class TheatersController < ApplicationController
     @theaters = Theater.all
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @theater = Theater.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @theater = Theater.new(theater_params)
@@ -54,5 +52,5 @@ class TheatersController < ApplicationController
 
   def theater_params
     params.require(:theater).permit(:name, :location, :capacity)
-    end
+  end
 end

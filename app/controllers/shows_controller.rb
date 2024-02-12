@@ -1,5 +1,6 @@
 class ShowsController < ApplicationController
   load_and_authorize_resource
+
   before_action :load_movies, only: %i(new edit)
   before_action :set_theater, only: %i(create update)
 
