@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @theater %>
+
+<div>
+  <%= link_to "Edit this theater", edit_theater_path(@theater), class: "btn btn-warning" %> |
+  <%= link_to "Back to theaters", theaters_path, class: "btn btn-primary" %>
+
+  <%= button_to "Destroy this theater", @theater, method: :delete, class: "btn btn-danger mt-3" %>
+</div>

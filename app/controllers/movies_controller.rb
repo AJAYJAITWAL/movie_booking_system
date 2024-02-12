@@ -1,6 +1,7 @@
 class MoviesController < ApplicationController
   load_and_authorize_resource
   skip_before_action :authenticate_user!, only: %i(show index)
+  before_action :set_movie, except: %i(index new)
 
   def index
     @movies = Movie.all
@@ -49,7 +50,16 @@ class MoviesController < ApplicationController
     end
   end
 
+  def available_shows
+    @available_theaters = Theater.joins(shows: :movie).where(movie: {id: @movie.id}, shows: { show_date: params[:date] || Date.today }).uniq
+    @available_dates = @movie.shows.where("show_date >= ?", Date.today)&.map(&:show_date)&.uniq
+  end
+
   private
+
+  def set_movie
+    @movie = Movie.find(params[:id] || params[:movie_id])
+  end
 
   def movie_params
     params.require(:movie).permit(:title, :genre, :image, :description)

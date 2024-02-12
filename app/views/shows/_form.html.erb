@@ -13,23 +13,28 @@
   <% end %>
 
   <div>
-    <%= form.label :movie_id, style: "display: block" %>
+    <%= form.label :movie, style: "display: block" %>
     <%= form.collection_select :movie_id, @movies, :id, :title, prompt: "Select a movie", class: "form-select" %>
   </div>
 
   <div>
+    <%= form.label :theater, style: "display: block" %>
+    <%= form.collection_select :theater_id, @theaters, :id, :name, prompt: "Select a theater", class: "form-select" %>
+  </div>
+
+  <div>
+    <%= form.label :show_date, style: "display: block" %>
+    <%= form.date_field :show_date, class: "form-control" %>
+  </div>
+
+  <div>
     <%= form.label :start_time, style: "display: block" %>
-    <%= form.datetime_field :start_time, class: "form-control" %>
+    <%= form.time_field :start_time, class: "form-control" %>
   </div>
 
   <div>
     <%= form.label :end_time, style: "display: block" %>
-    <%= form.datetime_field :end_time, class: "form-control" %>
-  </div>
-
-  <div>
-    <%= form.label :total_seats, style: "display: block" %>
-    <%= form.number_field :total_seats, class: "form-control" %>
+    <%= form.time_field :end_time, class: "form-control" %>
   </div>
 
   <div>

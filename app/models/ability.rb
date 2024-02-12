@@ -10,6 +10,7 @@ class Ability
 
     can :read, Movie
     can :read, Show
+    can :red, Theater
     can :manage, Booking, user: user
   end
 end

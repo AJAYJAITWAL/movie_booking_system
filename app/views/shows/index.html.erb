@@ -2,10 +2,16 @@
 
 <h1>Shows</h1>
 
+<% if can? :manage, Show %>
+  <%= link_to "Add Shows", new_show_path, class: "btn btn-info" %>
+<% end %>
+
 <div id="shows">
   <% if @shows.present? %>
     <% @shows.each do |show| %>
-      <%= render show %>
+      <%= link_to show, class: "card-link text-decoration-none" do %>
+        <%= render show %>
+      <% end %>
     <% end %>
   <% else %>
     <h3>No Show Found!</h3>

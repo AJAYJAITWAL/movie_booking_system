@@ -1,5 +1,6 @@
 class Show < ApplicationRecord
   belongs_to :movie
+  belongs_to :theater
 
   validates :movie_id, presence: true
   validates :start_time, presence: true

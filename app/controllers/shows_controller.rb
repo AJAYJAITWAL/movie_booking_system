@@ -1,6 +1,7 @@
 class ShowsController < ApplicationController
   load_and_authorize_resource
   before_action :load_movies, only: %i(new edit)
+  before_action :set_theater, only: %i(create update)
 
   def index
     @shows = params[:movie_id].present? ? Show.where(movie_id: params[:movie_id]) : Show.all 
@@ -14,6 +15,8 @@ class ShowsController < ApplicationController
 
   def create
     @show = Show.new(show_params)
+    @show.total_seats = @theater.capacity
+    @show.available_seats = @theater.capacity
 
     respond_to do |format|
       if @show.save
@@ -50,10 +53,15 @@ class ShowsController < ApplicationController
   private
 
   def show_params
-    params.require(:show).permit(:movie_id, :start_time, :end_time, :total_seats)
+    params.require(:show).permit(:movie_id, :show_date, :start_time, :end_time, :theater_id)
+  end
+
+  def set_theater
+    @theater = Theater.find(params[:show][:theater_id])
   end
 
   def load_movies
     @movies = Movie.all
+    @theaters = Theater.all
   end
 end

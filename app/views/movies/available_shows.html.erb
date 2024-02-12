@@ -1,0 +1,50 @@
+<p style="color: green"><%= notice %></p>
+
+<div class="my-3">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-4">
+        <%= image_tag url_for(@movie.image), class: 'thumbnail w-100' %>
+      </div>
+      <div class="col-8">
+        <h3 class="card-title mb-2"><%= @movie.title %></h3>
+        <h6 class="card-title mb-3"><%= @movie.genre %></h6>
+        <p class="card-text mb-3"><%= @movie.description %></p>
+      </div>
+    </div>
+  </div>
+</div>
+<hr/>
+
+<ul class="nav nav-tabs mb-5">
+  <% @available_dates.each do |date| %>
+    <li class="nav-item">
+      <%= link_to date.to_date.strftime('%d'), movie_available_shows_path(movie_id: @movie.id, date: date), class: "nav-link #{ (params[:date].to_date || Date.today) == date ? 'active' : '' }" %>
+    </li>
+  <% end %>
+</ul>
+
+<div id="shows">
+  <% if @available_theaters.present? %>
+    <% @available_theaters.each do |theater| %>
+      <h2><%= theater.name %></h2>
+      <p><%= theater.location %></p>
+      <% theater.shows.where(show_date: (params[:date].to_date || Date.today)).each do |show| %>
+        <% badge_class = if show.available_seats <= ((show.total_seats * 25) / 100)
+                          "bg-danger"
+                        elsif show.available_seats <= ((show.total_seats * 50) / 100)
+                          "bg-warning"
+                        else
+                          "bg-success"
+                        end
+        %>
+        <%= link_to new_booking_path(show_id: show), class: "text-decoration-none" do %>
+          <p class="badge <%= badge_class %> fs-5 me-2"><%= show.start_time %></p>
+        <% end %>
+      <% end %>
+      <hr/>
+    <% end %>
+  <% else %>
+    <h3 class="text-center mt-5">Shows Not Available!</h3>
+  <% end %>
+</div>
