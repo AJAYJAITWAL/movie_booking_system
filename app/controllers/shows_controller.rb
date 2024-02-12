@@ -1,5 +1,6 @@
 class ShowsController < ApplicationController
-  before_action :set_show, only: %i[ show edit update destroy ]
+  load_and_authorize_resource
+  before_action :load_movies, only: %i(new edit)
 
   def index
     @shows = params[:movie_id].present? ? Show.where(movie_id: params[:movie_id]) : Show.all 
@@ -7,12 +8,9 @@ class ShowsController < ApplicationController
 
   def new
     @show = Show.new
-    @movies = Movie.all
   end
 
-  def edit
-    @movies = Movie.all
-  end
+  def edit; end
 
   def create
     @show = Show.new(show_params)
@@ -50,11 +48,12 @@ class ShowsController < ApplicationController
   end
 
   private
-    def set_show
-      @show = Show.find(params[:id])
-    end
 
-    def show_params
-      params.require(:show).permit(:movie_id, :start_time, :end_time, :total_seats)
-    end
+  def show_params
+    params.require(:show).permit(:movie_id, :start_time, :end_time, :total_seats)
+  end
+
+  def load_movies
+    @movies = Movie.all
+  end
 end

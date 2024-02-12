@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :set_booking, only: %i[ show edit update destroy ]
+  load_and_authorize_resource
 
   def index
     @bookings = Booking.all
@@ -53,11 +53,8 @@ class BookingsController < ApplicationController
   end
 
   private
-    def set_booking
-      @booking = Booking.find(params[:id])
-    end
 
-    def booking_params
-      params.require(:booking).permit(:user_id, :show_id, :show_date, seat_numbers: [])
-    end
+  def booking_params
+    params.require(:booking).permit(:user_id, :show_id, :show_date, seat_numbers: [])
+  end
 end

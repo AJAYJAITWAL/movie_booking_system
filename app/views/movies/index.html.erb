@@ -1,6 +1,8 @@
 <h1>Movies</h1>
 
-<%= link_to "New movie", new_movie_path, class: "btn btn-primary mb-4" %>
+<% if can? :manage, Movie %>
+  <%= link_to "New movie", new_movie_path, class: "btn btn-primary mb-4" %>
+<% end %>
 
 <div id="movies", class="row d-flex">
   <% @movies.each do |movie| %>

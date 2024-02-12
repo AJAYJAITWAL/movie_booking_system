@@ -13,10 +13,12 @@
           <%= link_to "Book ticket", new_booking_path(show_id: show), class: "btn btn-primary" %>
         </div>
 
-        <div class="d-flex">
-          <%= link_to "Edit", edit_show_path(show), class: "btn btn-primary me-2" %>
-          <%= button_to "Delete", @show, method: :delete, class: "btn btn-danger" %>
-        </div>
+        <% if can? :manage, Show %>
+          <div class="d-flex">
+            <%= link_to "Edit", edit_show_path(show), class: "btn btn-primary me-2" %>
+            <%= button_to "Delete", @show, method: :delete, class: "btn btn-danger" %>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
