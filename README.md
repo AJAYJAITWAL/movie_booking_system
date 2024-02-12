@@ -38,7 +38,7 @@ To run this project locally, follow these steps:
     yarn build
     yarn build:css
 
-5. Set up the database
+5. Set up the database (Set Postgres username and password in the database.yml file if needed)
    ```bash
    rails db:create
    rails db:migrate
