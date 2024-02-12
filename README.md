@@ -16,6 +16,8 @@ Make sure you have the following installed on your system:
 - Ruby (version 3.0.0)
 - Rails (version 7.1.3)
 - PostgreSQL
+- Node (version > 18)
+- Yarn (version 1.22.21)
 ## Installation
 
 To run this project locally, follow these steps:
@@ -48,11 +50,13 @@ To run this project locally, follow these steps:
    ```bash
    rails server
 
-7. Run Rspec
+7. Visit http://localhost:3000 in your web browser to access the application.
+
+8. Run Rspec
    ```bash
     bundle exec rspec spec
 
-8. Login credentials
+9. Login credentials
    ```bash
    email: 'admin@gmail.com'
    password: 'password'
